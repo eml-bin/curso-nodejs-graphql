@@ -10,12 +10,14 @@ const {
 const typeDefs = `
     type Query {
         hello: String
+        getPerson(name: String, age: Int): String
     }
 `;
 
 const resolvers = {
     Query: {
-        hello: () => 'hola mundo'
+        hello: () => 'hola mundo',
+        getPerson: (_, args) => `Hi, my name is ${args.name}, my age is ${args.age}`
     }
 }
 
