@@ -9,25 +9,27 @@ const {
 // Definición de GraphQL, se necesita al menos una definición de tipo para inicializar
 const typeDefs = `
     type Query {
-        hello: String
+        hello: String!
         getPerson(name: String, age: Int): String
         getInt: Int
-        getFloat(num: Float): Float
+        getFloat(num: Float): Float!
         getString: String
         getBoolean: Boolean
         getID: ID
+        getNums(numbers: [Int!]!): [Int]
     }
 `;
 
 const resolvers = {
     Query: {
-        hello: () => 'hola mundo',
+        hello: () => "hi!",
         getPerson: (_, args) => `Hi, my name is ${args.name}, my age is ${args.age}`,
-        getInt: () => 1, 
+        getInt: () => null, 
         getFloat: (_, args) => args.num,  
         getString: () => "word",
         getBoolean: () => true, 
-        getID: () => "123FFF"
+        getID: () => "123FFF",
+        getNums: (_, args) => args.numbers
     }
 }
 
