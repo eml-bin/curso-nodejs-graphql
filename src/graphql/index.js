@@ -1,34 +1,11 @@
 const { ApolloServer } = require('@apollo/server')
 const { expressMiddleware } = require('@apollo/server/express4')
 
+const { loadFiles } = require('@graphql-tools/load-files')
+
 const { 
     // ApolloServerPluginLandingPageGraphQLPlayground,
     ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default')
-
-
-// Definición de GraphQL, se necesita al menos una definición de tipo para inicializar
-const typeDefs = `
-    type Query {
-        hello: String!
-        getPerson(name: String, age: Int): String
-        getInt: Int
-        getFloat(num: Float): Float!
-        getString: String
-        getBoolean: Boolean
-        getID: ID
-        getNums(numbers: [Int!]!): [Int]
-        getProduct: Product
-    }
-
-    type Product {
-        id: ID!
-        name: String!
-        price: Float!
-        description: String!
-        image: String!
-        createAt: String!
-    } 
-`;
 
 const resolvers = {
     Query: {
@@ -55,7 +32,7 @@ const resolvers = {
 
 const useGraphQL = async (app) => {
     const server = new ApolloServer({
-        typeDefs,
+        typeDefs: await loadFiles('./src/**/*.graphql'),
         resolvers,
         playground: true,
         plugins: [
