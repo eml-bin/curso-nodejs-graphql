@@ -1,21 +1,15 @@
+const ProductsService = require('./../services/product.service');
+const service = new ProductsService();
+
 // Utilizando destructuring en args
-const getProduct = (_, { id }) => {
-    return {
-        id: id,
-        name: "Product 1",
-        price: 200.50,
-        description: 'Bla bla bla',
-        image: 'https://example.com/image1',
-        createAt: new Date().toISOString()
-    }
+const getProduct = async (_, { id }) => {
+    const product = await service.findOne(id);
+    return product
 }
 
-const getProducts = () => {
-    return []
-}
-
-const addProduct = () => {
-    // code
+const getProducts = async () => {
+    const products = await service.find({});
+    return products
 }
 
 module.exports = { 
