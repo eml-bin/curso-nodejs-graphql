@@ -1,6 +1,6 @@
 // Directorio de resolvers
 
-const { getProduct, getProducts } = require('./product.resolvers')
+const { getProduct, getProducts, addProduct } = require('./product.resolvers')
 
 const resolvers = {
     Query: {
@@ -15,6 +15,9 @@ const resolvers = {
         // Products
         product: getProduct,
         products: getProducts
+    },
+    Mutation: {
+        addProduct
     }
 }
 
