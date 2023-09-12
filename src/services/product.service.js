@@ -63,6 +63,11 @@ class ProductsService {
     return { id };
   }
 
+  // Nuevo query que resuelve el obtener productos por un Id de Categoría
+  async getByCategory(categoryId) {
+    return await models.Product.findAll({ where: { categoryId: categoryId }});
+  }
+
 }
 
 module.exports = ProductsService;

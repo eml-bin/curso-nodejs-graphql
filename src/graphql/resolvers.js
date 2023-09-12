@@ -1,7 +1,7 @@
 // Directorio de resolvers
 
-const { getProduct, getProducts, addProduct, updateProduct, deleteProduct } = require('./product.resolvers')
-const { addCategory } = require('./category.resolvers')
+const { getProduct, getProducts, addProduct, updateProduct, deleteProduct, getProductsByCategory } = require('./product.resolvers')
+const { addCategory, getCategory } = require('./category.resolvers')
 const { login } = require('./auth.resolvers')
 const { RegularExpression } = require('graphql-scalars')
 
@@ -19,7 +19,8 @@ const resolvers = {
         getNums: (_, args) => args.numbers,
         // Products
         product: getProduct,
-        products: getProducts
+        products: getProducts,
+        category: getCategory
     },
     Mutation: {
         addProduct,
@@ -28,7 +29,10 @@ const resolvers = {
         login,
         addCategory
     },
-    CategoryNameType
+    CategoryNameType,
+    Category: {
+        products: getProductsByCategory
+    }
 }
 
 module.exports = resolvers;

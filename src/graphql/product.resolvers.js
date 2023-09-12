@@ -23,10 +23,19 @@ const deleteProduct = async (_, { id }) => {
     return id
 }
 
+// Parent es el contexto, acceder a la información de una jerarquía más arriba
+const getProductsByCategory = async (parent) => {
+
+    // id de la categoría
+    const id = parent.dataValues.id
+    return service.getByCategory(id)
+}
+
 module.exports = { 
     getProduct, 
     getProducts,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductsByCategory
 }
