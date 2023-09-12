@@ -8,9 +8,12 @@ const addCategory = async (_, { dto }, context) => {
 
     // Validators
     const user = await check_jwtGQL(context)
-    checkRolesGQL(user, 'customer')
+    checkRolesGQL(user, 'admin')
 
-    return service.create(dto)
+    return service.create({
+        ...dto,
+        image: dto.image.href
+    })
 }
 
 module.exports = { addCategory }
