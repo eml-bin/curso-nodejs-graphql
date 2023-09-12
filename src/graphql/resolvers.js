@@ -1,6 +1,7 @@
 // Directorio de resolvers
 
 const { getProduct, getProducts, addProduct, updateProduct, deleteProduct } = require('./product.resolvers')
+const { login } = require('./auth.resolvers')
 
 const resolvers = {
     Query: {
@@ -19,7 +20,8 @@ const resolvers = {
     Mutation: {
         addProduct,
         updateProduct,
-        deleteProduct
+        deleteProduct,
+        login
     }
 }
 
